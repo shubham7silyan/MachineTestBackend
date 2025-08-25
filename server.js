@@ -28,11 +28,18 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGODB_URI;
 
+// Debug port information
+console.log(`🔍 Environment PORT: ${process.env.PORT}`);
+console.log(`🔍 Using PORT: ${PORT}`);
+
 // Connect to MongoDB Atlas
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("✅ MongoDB Atlas connected");
-    app.listen(PORT, '0.0.0.0', () => console.log(`🚀 Server running on port ${PORT}`));
+    app.listen(PORT, '0.0.0.0', () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`🌐 Server accessible at http://0.0.0.0:${PORT}`);
+    });
   })
   .catch((err) => console.error("❌ MongoDB connection error:", err));
