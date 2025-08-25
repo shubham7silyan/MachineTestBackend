@@ -1,11 +1,18 @@
 {
-    "$schema": "https://railway.app/railway.schema.json",
-    "build": {
-      "builder": "NIXPACKS"
-    },
-    "deploy": {
-      "startCommand": "npm start",
-      "restartPolicyType": "ON_FAILURE",
-      "restartPolicyMaxRetries": 10
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "nixpacksConfig": {
+      "phases": {
+        "install": {
+          "cmds": ["npm ci"]
+        }
+      }
     }
+  },
+  "deploy": {
+    "startCommand": "npm start",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
   }
+}
